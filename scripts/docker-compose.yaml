@@ -1,0 +1,21 @@
+---
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - postgres:/var/lib/postgresql/data:rw
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 134217728
+    environment:
+      POSTGRES_PASSWORD: supersecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: gocamp
+volumes:
+  postgres:
